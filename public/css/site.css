@@ -1,0 +1,90 @@
+/* 
+    Visual padrão da área pública do site.
+
+    Created on : 01/10/2017, 09:41:03
+    Author     : Fábio J L Ferreira
+*/
+
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.content p {
+    color: #000;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.content > .links {
+    margin-top: 30px;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+
+.content a {
+    color: #ff0000;
+}
+
+.error-404 {
+    color: #ac2925;
+    font-weight: bold;
+}
+
+.error-404 p {
+    font-size: 40px;
+    font-weight: 100;
+    margin-top: -20px;
+}
+
+@media (max-width: 575px) {
+    .title {
+        font-size: 68px;
+    }
+    
+    .error-404 {
+        margin-top: 50px;
+    }
+}
