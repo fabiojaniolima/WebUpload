@@ -89,7 +89,7 @@ class TagController extends Controller
     {
         $request->validate($this->regras);
         
-        $request->merge(['user_id' => Auth::id()]);
+        $request->merge(['user_id' => Auth::id(), 'tag' => strtoupper($request->tag)]);
         
         if (Tag::create($request->all())) {
             return redirect($this->redirect)

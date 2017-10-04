@@ -19,6 +19,7 @@
                         <thead>
                             <tr>
                                 <th>Título</th>
+                                <th>Extensão</th>
                                 <th>E-mail</th>
                                 <th>Tag</th>
                                 <th>Submetido em</th>
@@ -29,6 +30,7 @@
                             @forelse($arquivos as $arq)
                             <tr>
                                 <td>{{ $arq->titulo or ' - ' }}</a></td>
+                                <td>{{ File::extension($arq->caminho)}}</td>
                                 <td>{{ $arq->email }}</td>
                                 <td>{{ $arq->tag->tag}}</td>
                                 <td>{{ $arq->created_at->format('d/m/Y à\s H:i:s') }}</td>

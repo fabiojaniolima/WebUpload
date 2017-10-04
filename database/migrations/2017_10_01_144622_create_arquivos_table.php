@@ -16,7 +16,7 @@ class CreateArquivosTable extends Migration
         Schema::create('arquivos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('email');
-            $table->string('titulo', 30)->nullable();
+            $table->string('titulo', 50)->nullable();
             $table->string('caminho');
             $table->integer('tag_id')->unsigned();
             $table->timestamps();

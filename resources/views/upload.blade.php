@@ -51,7 +51,7 @@
                         <label for="tag" class="col-md-2 control-label hidden-xs hidden-sm">Tag:</label> 
 
                         <div class="col-md-10">
-                            <input id="titulo" type="text" class="form-control" name="tag" placeholder="Tag de identificação" value="{{ old('tag') }}">
+                            <input id="tag" type="text" class="form-control" name="tag" placeholder="Tag de identificação" value="{{ old('tag') }}">
 
                             @if ($errors->has('tag'))
                             <span class="help-block">
@@ -62,7 +62,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('arquivo') ? ' has-error' : '' }}">
-                        <label for="titulo" class="col-md-2 control-label hidden-xs hidden-sm">Arquivo:</label> 
+                        <label for="arquivo" class="col-md-2 control-label hidden-xs hidden-sm">Arquivo:</label> 
 
                         <div class="col-md-10">
                             <input id="arquivo" type="file" class="form-control" name="arquivo">

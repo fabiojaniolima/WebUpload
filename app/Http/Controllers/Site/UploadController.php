@@ -19,7 +19,7 @@ class UploadController extends Controller
     {
         $request->validate([
             'email' => 'required|email',
-            'titulo' => 'max:30',
+            'titulo' => 'max:50',
             'tag' => 'exists:tags,tag|required|max:25',
             'arquivo' => 'required|file|max:30720|mimes:zip,rar,pdf,doc,docx'
         ]);
@@ -28,7 +28,16 @@ class UploadController extends Controller
                         ->where('tag', $request->tag)
                         ->first();
 
-        $caminho = $request->arquivo->store('public/uploads/' . date('Y/m'));
+        $caminho = $request->file('arquivo')->store('public/uploads/' . date('Y/m'));
+        
+        $titulo_original = $request->file('arquivo')->getClientOriginalName();
+        $extensao = '.' . $request->file('arquivo')->getClientOriginalExtension();
+        
+        $titulo = str_replace($extensao , '', $titulo_original);
+        
+        if(!$request->titulo) {
+            $request->merge(['titulo' => $titulo]);
+        }
 
         $request->merge(['tag_id' => $tag->id, 'caminho' => $caminho]);
 

@@ -14,6 +14,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/painel.css') }}" rel="stylesheet">
         <link href="{{ asset('vendor/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet">
+        @stack('estilos')
     </head>
     <body>
         <div id="app">
@@ -41,7 +42,9 @@
                             <!-- Authentication Links -->
                             @guest
                             <li><a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Entrar</a></li>
+                            @if(PrefSistema::auto_registro())
                             <li><a href="{{ route('register') }}"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrar-se</a></li>
+                            @endif
                             @else
                             <li>
                                 <a href="{{ url('/painel') }}"><i class="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a>
@@ -66,6 +69,11 @@
                                         </a>
                                     </li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="{{ url('/painel/preferencias/configuracoes') }}">
+                                    <i class="fa fa-gear" aria-hidden="true"></i> Preferências
+                                </a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle perfil" data-toggle="dropdown" role="button" aria-expanded="false">

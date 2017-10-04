@@ -6,6 +6,8 @@ use Auth;
 use App\Models\Arquivo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ArquivoController extends Controller
 {
@@ -55,11 +57,7 @@ class ArquivoController extends Controller
         if ($arq) {
             $caminho = storage_path('app/' . $arq->caminho);
 
-            if($arq->titulo) {
-                return response()->download($caminho, str_slug($arq->titulo, '-') . '.' . \File::extension($caminho));
-            }
-            
-            return response()->download($caminho, str_slug($arq->titulo, '-'));
+            return response()->download($caminho, str_slug($arq->titulo, '-') . '.' . File::extension($caminho));
         }
 
         return redirect($this->redirect)
@@ -80,7 +78,7 @@ class ArquivoController extends Controller
                     ->first();
 
         if ($arq) {
-            \Storage::delete($arq->caminho);
+            Storage::delete($arq->caminho);
 
             $arq = Arquivo::find($id);
             $arq->delete();

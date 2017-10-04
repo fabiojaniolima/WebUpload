@@ -27,4 +27,7 @@ Route::group(['prefix' => 'painel', 'middleware' => 'auth'], function () {
     Route::get('/tags/excluir/{id}', 'Painel\TagController@excluir');
     Route::post('/tags/criar', 'Painel\TagController@criar');
     Route::post('/tags/atualizar/{id}', 'Painel\TagController@atualizar');
+    
+    Route::get('/preferencias/configuracoes', 'Painel\PreferenciaController@index');
+    Route::post('/preferencias/configuracoes', 'Painel\PreferenciaController@alterar');
 });
