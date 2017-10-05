@@ -19,7 +19,7 @@
                     </div>
                     @endif
 
-                    <form class="form-horizontal" method="POST" action="/painel/preferencias/configuracoes">
+                    <form class="form-horizontal" method="POST" action="/painel/preferencias">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('auto-registro') ? ' has-error' : '' }}">

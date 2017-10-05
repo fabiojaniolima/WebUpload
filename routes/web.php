@@ -20,6 +20,7 @@ Route::group(['prefix' => 'painel', 'middleware' => 'auth'], function () {
     
     Route::get('/arquivos', 'Painel\ArquivoController@index');
     Route::get('/arquivos/download/{id}', 'Painel\ArquivoController@download');
+    Route::get('/arquivos/detalhes/{id}', 'Painel\ArquivoController@detalhes');
     Route::get('/arquivos/excluir/{id}', 'Painel\ArquivoController@excluir');
     
     Route::get('/tags', 'Painel\TagController@index');
@@ -28,6 +29,6 @@ Route::group(['prefix' => 'painel', 'middleware' => 'auth'], function () {
     Route::post('/tags/criar', 'Painel\TagController@criar');
     Route::post('/tags/atualizar/{id}', 'Painel\TagController@atualizar');
     
-    Route::get('/preferencias/configuracoes', 'Painel\PreferenciaController@index');
-    Route::post('/preferencias/configuracoes', 'Painel\PreferenciaController@alterar');
+    Route::get('/preferencias', 'Painel\PreferenciaController@index');
+    Route::post('/preferencias', 'Painel\PreferenciaController@alterar');
 });

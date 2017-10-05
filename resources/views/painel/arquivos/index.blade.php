@@ -39,6 +39,10 @@
                                         <i class="fa fa-download fa-lg"></i>
                                     </a>
                                     &nbsp; | &nbsp;
+                                    <a title="Apagar" href="{{ url('/painel/arquivos/detalhes', $arq->id) }}">
+                                        <i class="fa fa-info-circle fa-lg"></i>
+                                    </a>
+                                    &nbsp; | &nbsp;
                                     <a title="Apagar" href="{{ url('/painel/arquivos/excluir', $arq->id) }}" data-method="delete">
                                         <i class="fa fa-trash-o fa-lg"></i>
                                     </a>
@@ -46,7 +50,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="5">Não existem arquivos para serem listados</td>
+                                <td colspan="6">Não existem arquivos para serem listados</td>
                             </tr>
                             @endforelse
                         </tbody>

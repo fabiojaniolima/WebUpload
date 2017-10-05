@@ -8,7 +8,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'WebUpload') }}</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -28,6 +28,14 @@
                 @endif
                 @auth
                 <a href="{{ url('/painel') }}"><i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard</a>
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                           document.getElementById('logout-form').submit();">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i> Sair
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
                 @else
                 <a href="{{ route('login') }}"><i class="fa fa-sign-in" aria-hidden="true"></i> Entrar</a>
                 @if(PrefSistema::auto_registro())

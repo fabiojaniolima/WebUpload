@@ -6,7 +6,7 @@
 */
 
 html, body {
-    background-color: #fff;
+    background-color: #f5f8fa;
     color: #000000;
     font-family: 'Raleway', sans-serif;
     font-weight: 100;
@@ -49,9 +49,6 @@ html, body {
 
 .content {
     text-align: center;
-}
-
-.content p {
     color: #000;
 }
 

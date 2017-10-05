@@ -25,9 +25,10 @@ As palavras-chave "DEVE", "NÃO DEVE", "REQUER", "DEVERIA", "NÃO DEVERIA", "POD
 ## 2 - <a id="funcionalidades"></a>Funcionalidades
 - [x] Autenticação de usuário
 - [x] Recuperação de senha por email 
-- [x] Gerenciamento de arquivos (upload, download e exclusão)
+- [x] Gerenciamento de arquivos (upload, download, exclusão e página com detalhes do arquivo)
 - [x] Organização de arquivos (sistema de tags)
 - [x] Dashboard (total de arquivos, total de tags, total de usuários...)
+- [x] Painel de preferências de sistema (com acesso restrito ao user master)
 
 ## 3 - <a id="proposta_projeto"></a>Proposta do projeto
 

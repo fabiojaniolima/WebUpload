@@ -8,7 +8,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'WebUpload') }}</title>
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -70,11 +70,13 @@
                                     </li>
                                 </ul>
                             </li>
+                            @can('preferencias')
                             <li>
-                                <a href="{{ url('/painel/preferencias/configuracoes') }}">
+                                <a href="{{ url('/painel/preferencias') }}">
                                     <i class="fa fa-gear" aria-hidden="true"></i> Preferências
                                 </a>
                             </li>
+                            @endcan
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle perfil" data-toggle="dropdown" role="button" aria-expanded="false">
                                     <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>

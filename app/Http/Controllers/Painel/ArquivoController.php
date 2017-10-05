@@ -50,18 +50,51 @@ class ArquivoController extends Controller
     public function download($id)
     {
         $arq = Arquivo::join('tags', 'tags.id', '=', 'arquivos.tag_id')
-                    ->where('tags.user_id', Auth::id())
                     ->where('arquivos.id', $id)
                     ->first();
+        
+        if (!$arq)
+            abort(404);
+        
+        $this->authorize('arquivos', $arq);
 
-        if ($arq) {
-            $caminho = storage_path('app/' . $arq->caminho);
+        $caminho = storage_path('app/' . $arq->caminho);
 
-            return response()->download($caminho, str_slug($arq->titulo, '-') . '.' . File::extension($caminho));
-        }
-
-        return redirect($this->redirect)
-                    ->with(['status' => 'danger', 'msg' => 'Você não tem permissão para baixar este arquivo!']);
+        return response()->download($caminho, str_slug($arq->titulo, '-') . '.' . File::extension($caminho));
+    }
+    
+    /**
+     * Mostra detalhes do arquivo
+     * 
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function detalhes($id)
+    {
+        $arq = Arquivo::join('tags', 'tags.id', '=', 'arquivos.tag_id')
+                    ->where('arquivos.id', $id)
+                    ->first();
+        
+        if (!$arq)
+            abort(404);
+        
+        $this->authorize('arquivos', $arq);
+                        
+        $path_arq = storage_path('app/' . $arq->caminho);
+                
+        $info = (object) [
+            'id' => $id,
+            'titulo' => $arq->titulo,
+            'extensao' => File::extension($path_arq),
+            'tamanho' => File::size($path_arq),
+            'carregado' => $arq->created_at->format('d/m/Y à\s H:i:s'),
+            'owner' => $arq->email,
+            'tag' => $arq->tag,
+            'md5' => hash_file('md5', $path_arq),
+            'sha256' => hash_file('sha256', $path_arq)
+        ];
+        
+        return view('/painel/arquivos/detalhes', compact('info'));
     }
     
     /**
@@ -73,21 +106,20 @@ class ArquivoController extends Controller
     public function excluir($id)
     {
         $arq = Arquivo::join('tags', 'tags.id', '=', 'arquivos.tag_id')
-                    ->where('tags.user_id', Auth::id())
                     ->where('arquivos.id', $id)
                     ->first();
+        
+        if (!$arq)
+            abort(404);
+        
+        $this->authorize('arquivos', $arq);
 
-        if ($arq) {
-            Storage::delete($arq->caminho);
+        Storage::delete($arq->caminho);
 
-            $arq = Arquivo::find($id);
-            $arq->delete();
-
-            return redirect($this->redirect)
-                        ->with(['status' => 'success', 'msg' => 'Arquivo excluido!']);
-        }
+        $arq = Arquivo::find($id);
+        $arq->delete();
 
         return redirect($this->redirect)
-                    ->with(['status' => 'danger', 'msg' => 'Ocorreu um erro!']);
+                    ->with(['status' => 'success', 'msg' => 'Arquivo excluido!']);
     }
 }
